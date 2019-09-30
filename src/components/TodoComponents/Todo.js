@@ -18,14 +18,33 @@ export default class Todo extends Component {
     handleChange = (e) => {
         e.preventDefault();
 
+        // ? NEW VALUE FROM INPUT
+        const targetValue = { [e.target.name]: e.target.value.toLowerCase().trim() };
+
         // ! MAKE SURE TO GRAB VALUE FROM ELEMENT
-        console.log(e.target.value)
+        console.log('TARGET VALUE', targetValue);
+
+        // * SET NEW STATE
+        this.setState(targetValue);
     }
 
     // * ADDING NEW TODO OBBJECTS FOR STATE
-    addTodos = (e) => {
+    addTodos = (newValue, e) => {
         e.preventDefault()
 
+        // * SET NEW STATE WITH NEW VALUE
+        this.setState({
+            todoList: [
+                ...this.state.todoList,
+                {
+                    task: this.state.task,
+                    completed: false,
+                    id: Date.now()
+                }
+            ]
+        })
+
+        // ! CONFIRM DATA 
         console.log(`THIS IS ADDING A TODO ${this.state.todoList}`)
     }
 
@@ -40,17 +59,15 @@ export default class Todo extends Component {
 
         return (
             <div>
-                <h1>
-                    SOMETINNNNG HERE~~~~~~~~~ {':('}
-                </h1>
+                <h1>Todo App!</h1>
 
-                <TodoList 
-                todoList={this.state.todoList} />
+                <TodoList
+                    todoList={this.state.todoList} />
 
-                <TodoForm 
-                handleChange={this.handleChange}
-                addTodos={this.addTodos}
-                clearCompletedTodos={this.clearCompletedTodos} />
+                <TodoForm
+                    handleChange={this.handleChange}
+                    addTodos={this.addTodos}
+                    clearCompletedTodos={this.clearCompletedTodos} />
             </div>
         )
     }

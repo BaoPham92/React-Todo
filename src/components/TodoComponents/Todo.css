@@ -1,0 +1,3 @@
+.todo__container > .todo__list > ul > li {
+    list-style: none;
+}

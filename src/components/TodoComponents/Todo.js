@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import { TodoForm } from './TodoForm';
 import { TodoList } from './TodoList';
 
+// * STYLE IMPORTS
+import './Todo.css'
+
 export default class Todo extends Component {
     constructor() {
         super()
@@ -58,7 +61,7 @@ export default class Todo extends Component {
     render() {
 
         return (
-            <div>
+            <div className={`todo__container`}>
                 <h1>Todo App!</h1>
 
                 <TodoList

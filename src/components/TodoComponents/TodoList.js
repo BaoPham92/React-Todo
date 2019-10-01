@@ -8,7 +8,18 @@ export const TodoList = ({ todoList }) => (
         */}
 
         <ul>
-            {todoList && todoList.map((item, key) => <li key={key}>{item.task}</li>)}
+            {todoList && todoList.map((item, key) => {
+
+                {/* // * DISPLAY SPECIFIC VALUE BASED ON BOOLEAN VALUE
+                    // * ALSO UPDATE THE CLEARED ITEMS A CLICK BUTTON
+                 */}
+                const isFalse = item.completed === false
+
+                return <li key={key}>
+                    {isFalse && item.task}
+                    {isFalse && <button onClick={() => item.toggleComplete()}>x</button>}
+                </li>
+            })}
         </ul>
     </div>
 )

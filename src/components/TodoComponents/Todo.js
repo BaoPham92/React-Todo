@@ -42,13 +42,16 @@ export default class Todo extends Component {
                 {
                     task: this.state.task,
                     completed: false,
-                    id: Date.now()
+                    id: Date.now(),
+                    toggleComplete: function() {
+                        return this.completed = true;
+                    }
                 }
             ]
         })
 
         // ! CONFIRM DATA 
-        console.log(`THIS IS ADDING A TODO ${this.state.todoList}`)
+        console.log(`THIS IS ADDING A TODO ${this.state.todoList}`, this.state.todoList)
     }
 
     // * CLEAR COMPLETED TODOS
@@ -56,6 +59,8 @@ export default class Todo extends Component {
         e.preventDefault()
 
         console.log(`THIS IS CLEARING COMPLETED TODOS ${this.state.todoList}`)
+
+        return this.setState(this.state.todoList.filter(task => task.complete !== true))
     }
 
     render() {
